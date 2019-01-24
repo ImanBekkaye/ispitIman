@@ -1,0 +1,41 @@
+{
+  "users":[
+    {
+      "username": "iman",
+      "password": "i123"
+    },
+    {
+      "username": "tarik",
+      "password": "t123"
+    },
+    {
+      "username": "naida",
+      "password": "n123"
+    },
+    {
+      "username": "meliha",
+      "password": "m123"
+    },
+    {
+      "username": "emira",
+      "password": "e123"
+    },
+    {
+      "username": "amina",
+      "password": "a123"
+    },
+    {
+      "username": "fatima",
+      "password": "f123"
+    },
+    {
+      "username": "almedina",
+      "password": "t123"
+    },
+    {
+      "username": "dzanela",
+      "password": "t123"
+    }
+  ]
+
+}
