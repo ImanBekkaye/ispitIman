@@ -45,6 +45,35 @@
 
 
     <main class="mdl-layout__content mdl-color--grey-100">
+        <div class=" mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+            <h3>ToDo List</h3>
+            <hr style="margin: 0px">
+            <h5 >I am just another list of things that you are good at..</h5>
+            <hr style="margin: 0px">
+            <style>
+                .demo-list-action {
+                    width: 300px;
+                }
+            </style>
+            <div id="listaTaskova">
+                <div class="demo-list-action mdl-list">
+                    <%data.task.map(function(e){%>
+                    <div class="mdl-list__item">
+                        <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+                        <span class="mdl-list__item-primary-content">
+                                        <span><%=e%></span>
+                                    </span>
+                    </div>
+                    <%})%>
+                </div>
+            </div>
+            <form>
+
+                <input type="text"  id="task" placeholder="Add new task here..." >
+                <button id="addTask" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >Add</button>
+
+            </form>
+        </div>
         <pre>
 
 
@@ -58,25 +87,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </pre>
+
+
 
         <footer class="mdl-mega-footer">
             <div class="mdl-mega-footer__middle-section">
@@ -150,7 +163,32 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script>
+    $('#addTask').click(function(){
+       event.preventDefault()
+       event.stopPropagation()
 
+    //koristimo ajax da ne bi sve ucitavali opet
+    console.log('kliknuto')
+    console.log($('#task').val())
+    $.ajax({
+        url: 'profile/tasks',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify( {name: $('#task').val() }) ,
+        success: function(data){
+        console.log('ajax uspiooo', data)
+    $("#listaTaskova").html(data);
+    $('#task').val('');
+
+    }
+    })
+
+
+    })
+
+
+</script>
 
 </body>
 </html>

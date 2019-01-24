@@ -1,0 +1,19 @@
+
+<!-- List items with avatar and action -->
+<style>
+    .demo-list-action {
+        width: 300px;
+    }
+</style>
+
+<div class="demo-list-action mdl-list">
+    <%data.map(e=>{%>
+    <div class="mdl-list__item">
+        <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    <span class="mdl-list__item-primary-content">
+      <span><%=e%></span>
+    </span>
+
+    </div>
+    <%})%>
+</div>

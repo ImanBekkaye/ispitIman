@@ -39,9 +39,55 @@ var encrypt = (password)=>{
     return hash.digest('hex');
 }
 
+/*
+    getTasks using cookie
+*  funkcija koja koristi kolacice kao parametar i pristupa tabeli tasks
+*
+*/
+var getTaskById= function(id,func){
+    const dbTask = fs.readFileSync('./db/task.json')
+    var tasks = JSON.parse(dbTask);
+    var task=tasks.tasks.find(e=>{
+        if(e.username==id)return true
+else return false
+});
+    if(task){func(task)}else{console.log('failed to fetch task');func(false)}
+}
+
+/*
+* setTask using cookie
+* koristi kolacic da pronade odgovarajuce mjesto gdje treba staviti taskove
+*
+* */
+var setTaskById= function(id,newTask,func){
+    const dbTask = fs.readFileSync('./db/task.json')
+    var tasks = JSON.parse(dbTask);
+    var task= null;
+    console.log('duzinaaa:',tasks.tasks)
+    for(var i=0;i<tasks.tasks.length;i++){
+        if(tasks.tasks[i].username == id){
+            task=tasks.tasks[i]
+            tasks.tasks[i].task.push(newTask)
+        }
+    }
+    /*var task=tasks.tasks.find(e=>{
+        if(e.username==id){return true}
+        else return false
+    });*/
+    if(task){
+        var data=JSON.stringify(tasks,null,2);
+        fs.writeFile('./db/task.json',data,()=>{
+            func(task)
+        })
+    }else{console.log('failed to fetch task');func(false)}
+}
+
+
 module.exports = {
     checkUser,
-    check
+    check,
+    getTaskById,
+    setTaskById,
 
 
 };
